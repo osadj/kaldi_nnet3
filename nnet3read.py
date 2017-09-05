@@ -31,7 +31,7 @@ def nnet3read(dnnFilename, outFilename="", write_to_disk=False):
         
         :Example:
             
-        >>> nnet3read('final.txt', 'DNN_1024.h5', write_to_disk=True)
+        >>> b, W = nnet3read('final.txt', 'DNN_1024.h5', write_to_disk=True)
     """
     # nn_elements = ['LinearParams', 'BiasParams']
     with open(dnnFilename, 'r') as f:
@@ -70,4 +70,4 @@ def nnet3read(dnnFilename, outFilename="", write_to_disk=False):
     return b, W
 
 if __name__ == '__main__':
-    nnet3read('final.txt', 'DNN_1024.h5', write_to_disk=True)
+    b, W = nnet3read('final.txt', 'DNN_1024.h5', write_to_disk=True)
