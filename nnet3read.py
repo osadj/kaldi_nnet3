@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Sep  1 11:12:03 2017
-Updated on Tue Sep  5 13:10:03 2017
+Updated on Tue Sep  5 17:10:03 2017
 
 @author: Omid Sadjadi <s.omid.sadjadi@gmail.com>
 """
@@ -64,9 +64,10 @@ def nnet3read(dnnFilename, outFilename="", write_to_disk=False):
             os.makedirs(filepath)
         with h5py.File(outFilename, 'w') as h5f:
             for ix in range(len(b)):
-                h5f.create_dataset('w'+str(ix), data=np.c_[b[ix], W[ix]], 
+                h5f.create_dataset('w'+str(ix), data= W[ix], 
                 dtype='f8', compression='gzip', compression_opts=9)
-                
+                h5f.create_dataset('b'+str(ix), data= b[ix], 
+                dtype='f8', compression='gzip', compression_opts=9)
     return b, W
 
 if __name__ == '__main__':
