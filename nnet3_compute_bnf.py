@@ -54,7 +54,7 @@ def extract_bn_features(dnn, fea, nonlin='sigmoid', renorm=False):
         and the spliced feature vectors fea. It is assumed that the last layer is 
         the bottleneck layer. This can be achieved by running the following command:
         nnet3-copy --binary=false --nnet-config='echo output-node name=output input=dnn_bn.renorm |' \
-                   --edits='remove-orphans' exp/nnet3/swbd9/final.raw exp/nnet3/swbd/final.txt
+                   --edits='remove-orphans' exp/nnet3/swbd/final.raw exp/nnet3/swbd/final.txt
     """
     b, W = dnn
     aff = fea
