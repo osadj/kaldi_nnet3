@@ -72,6 +72,8 @@ if __name__ == '__main__':
     # we assume mfc is a numpy array of [ndim x nframes] dimesnsion, e.g., [39 x 537]
     # that contains 39-dimensional (say) MFCCs. Features are spliced by stacking over 
     # a 21-frame context
+    # NOTE: These mfc features must be extracted exactly the same way you extract mfc 
+    #       features to train the DNN (i.e., the frontends should be the same).
     fea = splice_feats(mfc, w=21)
     
     # now we extract bottleneck features using the DNN parameters and the spliced 
