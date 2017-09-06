@@ -32,6 +32,11 @@ def renorm_rms(data, target_rms=1.0, axis=0):
     scale[scale==0] = 1.
     return data / scale
 
+def sigmoid(x):
+    """ This routine implements Sigmoid nonlinearity
+    """
+    return 1 / (1 + np.exp(-x))
+
 def squashit(aff, nonlin, renorm=False):
     """ This routine applies Sigmoid and RELU activation functions along with the 
         RMS renorm
@@ -43,11 +48,6 @@ def squashit(aff, nonlin, renorm=False):
     if renorm:
         aff = renorm_rms(aff, axis=0)
     return aff
-
-def sigmoid(x):
-    """ This routine implements Sigmoid nonlinearity
-    """
-    return 1 / (1 + np.exp(-x))
 
 def extract_bn_features(dnn, fea, nonlin='sigmoid', renorm=False):
     """ This routine computes the bottleneck features using the DNN parameters (b, W)
