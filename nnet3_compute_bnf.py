@@ -27,9 +27,9 @@ def splice_feats(x, w=9):
 def renorm_rms(data, target_rms=1.0, axis=0):
     """ This routine scales the data such that the RMS is 1.0
     """
-    #scale = 1.0 / sqrt(x^t x / (D * target_rms^2)).
+    #scale = sqrt(x^t x / (D * target_rms^2)).
     D = data.shape[axis]
-    scale = np.sqrt(np.sum(data * data, axis=axis, keepdims=True)/(D * target_rms * target_rms)) + 0.0
+    scale = np.sqrt(np.sum(data * data, axis=axis, keepdims=True)/(D * target_rms * target_rms))
     scale[scale==0] = 1.
     return data / scale
 
