@@ -2,13 +2,30 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Sep  5 16:49:55 2017
-Updated on Wed Sep  6 12:06:55 2017
+Updated on Wed Sep  6 17:36:55 2017
 
 @author: Omid Sadjadi <s.omid.sadjadi@gmail.com>
 """
 
+import h5py
 import numpy as np
 import nnet3read
+
+def load_dnn(dnnFilename):
+    """ This routine reads in the DNN parameters (b, W) that are saved in a HDF5
+        formatted file (also see nnet3read)
+    """
+    with h5py.File(dnnFilename, 'r') as h5f:
+        dnn_layers = list(h5f.keys())
+        W = []
+        b = []
+        print("reading in the DNN parameters ...")
+        for l in range(len(dnn_layers)//2):
+            W.append(h5f['w'+str(l)][:])
+            print("layer {}: [{}]".format(l, W[l].shape))
+            b.append(h5f['b'+str(l)][:])
+        print("done.")
+    return b, W
 
 def splice_feats(x, w=9):
     """ This routine splices the feature vectors in x by stacking over a window
