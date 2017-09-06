@@ -78,7 +78,7 @@ if __name__ == '__main__':
     fea = splice_feats(mfc, w=21)
     
     # now we extract bottleneck features using the DNN parameters and the spliced 
-    # features. Here we assume that a RELU ativation function is used, and followed
+    # features. Here we assume that a RELU activation function is used, and followed
     # by a renorm nonlinearity to scale the RMS of the vector of activations to 1.0.
     # This kind of nonlinearity is implemented in Kaldi nnet3 as 'relu-renorm-layer'.
     bnf = extract_bn_features(dnn, fea, nonlin='relu', renorm=True)
